@@ -43,6 +43,42 @@ const Place = mongoose.model("Place", placeSchema);
 
 // })
 
+loc = ["60fb0fff32a9164a68c56807", "60fb0fff32a9164a68c56806", "60fb0fff32a9164a68c56805", "60fb0fff32a9164a68c56804", "60fb0fff32a9164a68c56803", "60fb0fff32a9164a68c56802", "60fb0fff32a9164a68c56801", "60fb0fff32a9164a68c56800", "60fb0fff32a9164a68c567fe", "60fb0fff32a9164a68c567ff", "60fb0fff32a9164a68c567fd", "60fb0fff32a9164a68c567fc", "60fb0fff32a9164a68c567fb", "60fb0fff32a9164a68c567fa", "60fb0fff32a9164a68c567f9", "60fb0fff32a9164a68c567f8", "60fb0fff32a9164a68c567f7", "60fb0fff32a9164a68c567f6", "60fb0fff32a9164a68c567f5", "60fb0fff32a9164a68c567f1", "60fb0fff32a9164a68c567f4", "60fb0fff32a9164a68c567f2", "60fb0fff32a9164a68c567f3", "60fb0fff32a9164a68c567f0", "60fb0fff32a9164a68c567ef", "60fb0fff32a9164a68c567ee", "60fb0fff32a9164a68c567ed", "60fb0fff32a9164a68c567ec", "60fb0fff32a9164a68c567eb", "60fb0fff32a9164a68c567ea", "60fb0fff32a9164a68c567e9", "60fb0fff32a9164a68c567e8", "60fb0fff32a9164a68c567e7", "60fb0fff32a9164a68c567e6", "60fb0fff32a9164a68c567e5", "60fb0fff32a9164a68c567e4"]
+
+// Vaccinated SCHEMA
+const vaccineTimeSchema = new mongoose.Schema({
+  taken: Date,
+  location: { type: mongoose.Schema.Types.ObjectId, ref: 'Place' }
+
+});
+
+const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
+
+
+
+
+//Start of july 23rd 1627048800000
+//End of july 23rd 1627081200000
+// loc.forEach((val, i) => {
+// 	for (var k = 100 - 1; k >= 0; k--) {
+// 		ms = 1626703200000 + Math.floor(Math.random() * 32400000)
+// 		let x = {
+// 			taken: new Date(ms),
+// 			location: val
+// 		}
+// 		VaccineTime.create(x, (err, place) => {
+// 			if(err) {
+// 				console.log(err)
+// 			} else {
+				
+// 			}
+// 		})
+// 	}
+// 	if(i == loc.length - 1) {
+// 		console.log("Done")
+// 	}
+// })
+
 app.use("/static", express.static("node_modules/bootstrap/dist"));
 app.use("/static", express.static("node_modules/leaflet/dist"));
 app.use("/static", express.static("public"));
@@ -78,6 +114,35 @@ app.get("/clinic/:id", function (req, res) {
 
 app.get("/heatmap", function (req, res) {
   res.render("heatmap");
+});
+
+app.get("/schedule/:id", function (req, res) {
+	var days = 8; // Days you want to subtract
+	var date = new Date();
+	var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+  	VaccineTime.find({ location: req.params.id, taken: { $gt:last } }, function (err, allTime) {
+	    if (err) {
+	      console.log(err);
+	    } else {
+	    	let split = [
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0]]
+	  		allTime.forEach((val, ind) => {
+	  			split[parseInt(val.taken.getHours() - 8)][parseInt(val.taken.getDay() - 1)]++;
+
+	  			if(ind === allTime.length - 1){
+	    			res.render("schedule", {times: split})
+	  			}
+	  		})
+	    }
+    });
 });
 
 app.get("/:id", function (req, res) {
