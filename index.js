@@ -43,6 +43,7 @@ const Place = mongoose.model('Place', placeSchema)
 
 app.use('/static', express.static('node_modules/bootstrap/dist'))
 app.use('/static', express.static('node_modules/leaflet/dist'))
+app.use('/static', express.static('public'))
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
