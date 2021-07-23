@@ -43,6 +43,39 @@ const Place = mongoose.model("Place", placeSchema);
 
 // })
 
+loc = ["60fb0fff32a9164a68c56807", "60fb0fff32a9164a68c56806", "60fb0fff32a9164a68c56805", "60fb0fff32a9164a68c56804", "60fb0fff32a9164a68c56803", "60fb0fff32a9164a68c56802", "60fb0fff32a9164a68c56801", "60fb0fff32a9164a68c56800", "60fb0fff32a9164a68c567fe", "60fb0fff32a9164a68c567ff", "60fb0fff32a9164a68c567fd", "60fb0fff32a9164a68c567fc", "60fb0fff32a9164a68c567fb", "60fb0fff32a9164a68c567fa", "60fb0fff32a9164a68c567f9", "60fb0fff32a9164a68c567f8", "60fb0fff32a9164a68c567f7", "60fb0fff32a9164a68c567f6", "60fb0fff32a9164a68c567f5", "60fb0fff32a9164a68c567f1", "60fb0fff32a9164a68c567f4", "60fb0fff32a9164a68c567f2", "60fb0fff32a9164a68c567f3", "60fb0fff32a9164a68c567f0", "60fb0fff32a9164a68c567ef", "60fb0fff32a9164a68c567ee", "60fb0fff32a9164a68c567ed", "60fb0fff32a9164a68c567ec", "60fb0fff32a9164a68c567eb", "60fb0fff32a9164a68c567ea", "60fb0fff32a9164a68c567e9", "60fb0fff32a9164a68c567e8", "60fb0fff32a9164a68c567e7", "60fb0fff32a9164a68c567e6", "60fb0fff32a9164a68c567e5", "60fb0fff32a9164a68c567e4"]
+
+// Vaccinated SCHEMA
+const vaccineTimeSchema = new mongoose.Schema({
+  taken: Date,
+  location: { type: mongoose.Schema.Types.ObjectId, ref: 'Place' }
+
+});
+
+const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
+
+
+
+
+//Start of july 23rd 1627020000000
+//End of july 23rd 1627106399000
+// loc.forEach((val, i) => {
+// 	for (var k = 100 - 1; k >= 0; k--) {
+// 		ms = 1627020000000 + Math.floor(Math.random() * 86399000)
+// 		let x = {
+// 			taken: new Date(ms),
+// 			location: val
+// 		}
+// 		VaccineTime.create(x, (err, place) => {
+// 			if(err) {
+// 				console.log(err)
+// 			} else {
+// 				console.log(k)
+// 			}
+// 		})
+// 	}
+// })
+
 app.use("/static", express.static("node_modules/bootstrap/dist"));
 app.use("/static", express.static("node_modules/leaflet/dist"));
 app.use("/static", express.static("public"));
@@ -78,6 +111,16 @@ app.get("/clinic/:id", function (req, res) {
 
 app.get("/heatmap", function (req, res) {
   res.render("heatmap");
+});
+
+app.get("/schedule/:id", function (req, res) {
+  VaccineTime.find({ location: req.params.id }, function (err, allTime) {
+	    if (err) {
+	      console.log(err);
+	    } else {
+	    	res.render("schedule", {times: allTime})
+	    }
+    }
 });
 
 app.get("/:id", function (req, res) {
