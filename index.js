@@ -62,6 +62,19 @@ app.get("/clinics",function(req, res){
 	})
 });
 
+app.get("/clinics/:id",function(req, res){
+	Place.find({_id: req.params.id}, function(err, place){
+		if(err){
+			console.log(err);
+		} else {
+			if(place.length !== 1) {
+				res.redirect("/clinics")
+			} 
+			res.render("clinic", {place: place[0]});
+		}
+	})
+});
+
 app.get("/heatmap",function(req, res){
 	res.render("heatmap");
 });

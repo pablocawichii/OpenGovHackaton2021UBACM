@@ -1,0 +1,24 @@
+<%- include('./partials/head') %>
+<h1>Clinics</h1>
+
+<div id="mapid" style="width:400px; height: 700px;"></div>
+
+<script type="text/javascript">
+	// LEAFLET
+	var mymap = L.map('mapid').setView([<%- place.latlng.lat%>, <%- place.latlng.lng%>], 14);
+
+	var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	});
+
+	OpenStreetMap_DE.addTo(mymap)
+
+	let marker;
+	marker = L.marker([ <%- place.latlng.lat%>, <%- place.latlng.lng%>]).addTo(mymap)
+
+</script>
+
+<%- place %>
+
+<%- include('./partials/footer') %>
