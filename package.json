@@ -1,7 +1,7 @@
 {
   "name": "hackaton",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the git repository that will hold the code for our project in the 2021 OpenGov Hackaton.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,13 @@
     "express": "^4.17.1",
     "leaflet": "^1.7.1",
     "mongoose": "^5.13.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablocawichii/OpenGovHackaton2021UBACM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pablocawichii/OpenGovHackaton2021UBACM/issues"
+  },
+  "homepage": "https://github.com/pablocawichii/OpenGovHackaton2021UBACM#readme"
 }
