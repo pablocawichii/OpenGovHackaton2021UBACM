@@ -57,11 +57,11 @@ const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
 
 
 
-//Start of july 23rd 1627020000000
-//End of july 23rd 1627106399000
+//Start of july 23rd 1627048800000
+//End of july 23rd 1627081200000
 // loc.forEach((val, i) => {
 // 	for (var k = 100 - 1; k >= 0; k--) {
-// 		ms = 1627020000000 + Math.floor(Math.random() * 86399000)
+// 		ms = 1626703200000 + Math.floor(Math.random() * 32400000)
 // 		let x = {
 // 			taken: new Date(ms),
 // 			location: val
@@ -70,9 +70,12 @@ const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
 // 			if(err) {
 // 				console.log(err)
 // 			} else {
-// 				console.log(k)
+				
 // 			}
 // 		})
+// 	}
+// 	if(i == loc.length - 1) {
+// 		console.log("Done")
 // 	}
 // })
 
@@ -114,11 +117,30 @@ app.get("/heatmap", function (req, res) {
 });
 
 app.get("/schedule/:id", function (req, res) {
-  VaccineTime.find({ location: req.params.id }, function (err, allTime) {
+	var days = 8; // Days you want to subtract
+	var date = new Date();
+	var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+  	VaccineTime.find({ location: req.params.id, taken: { $gt:last } }, function (err, allTime) {
 	    if (err) {
 	      console.log(err);
 	    } else {
-	    	res.render("schedule", {times: allTime})
+	    	let split = [
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0],
+	    	[0,0,0,0,0]]
+	  		allTime.forEach((val, ind) => {
+	  			split[parseInt(val.taken.getHours() - 8)][parseInt(val.taken.getDay() - 1)]++;
+
+	  			if(ind === allTime.length - 1){
+	    			res.render("schedule", {times: split})
+	  			}
+	  		})
 	    }
     });
 });
