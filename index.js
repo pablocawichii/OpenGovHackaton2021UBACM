@@ -4,6 +4,12 @@ var express 	= require("express"),
 	mongoose      = require('mongoose');
 
 
+//
+
+
+
+mongoose.connect("mongodb+srv://root:SwwyBdV8sPVCz4bx@cluster0.xpjam.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+
 app.use('/static', express.static('node_modules/bootstrap/dist'))
 app.use('/static', express.static('node_modules/leaflet/dist'))
 
