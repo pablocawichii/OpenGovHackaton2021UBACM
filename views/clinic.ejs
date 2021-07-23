@@ -1,24 +1,27 @@
 <%- include('./partials/head') %>
-<h1>Clinics</h1>
+  <h1 class="align-center">Clinics</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6">fjdksla</div>
+    <div class="col-6">
+      <div id="mapid" style="width: 400px; height: 700px"></div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript">
+    // LEAFLET
+    var mymap = L.map('mapid').setView([<%- place.latlng.lat %>, <%- place.latlng.lng %>], 14);
 
-<div id="mapid" style="width:400px; height: 700px;"></div>
+    var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
 
-<script type="text/javascript">
-	// LEAFLET
-	var mymap = L.map('mapid').setView([<%- place.latlng.lat%>, <%- place.latlng.lng%>], 14);
+    OpenStreetMap_DE.addTo(mymap)
 
-	var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	});
-
-	OpenStreetMap_DE.addTo(mymap)
-
-	let marker;
-	marker = L.marker([ <%- place.latlng.lat%>, <%- place.latlng.lng%>]).addTo(mymap)
-
-</script>
+    let marker;
+    marker = L.marker([ <%- place.latlng.lat %>, <%- place.latlng.lng %>]).addTo(mymap)
+  </script>
 
 <%- place %>
-
 <%- include('./partials/footer') %>
