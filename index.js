@@ -120,7 +120,7 @@ app.get("/schedule/:id", function (req, res) {
 	    } else {
 	    	res.render("schedule", {times: allTime})
 	    }
-    }
+    });
 });
 
 app.get("/:id", function (req, res) {
