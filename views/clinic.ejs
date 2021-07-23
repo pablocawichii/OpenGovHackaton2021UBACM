@@ -1,14 +1,34 @@
 <%- include('./partials/head') %>
-  <h1 class="align-center">Clinics</h1>
+<div class="container">
+  <div class="col-md-12">
+    <div class="h-100 p-5 text-dark border bg-light rounded-3">
+      <h2><%- place.name %></h2>
+      <p></p>
+      <a id="openInGoogle" target="_blank" href="https://www.google.com/maps/place/17%C2%B014'21.6%22N+88%C2%B046'13.7%22W" class="btn btn-outline-dark">Find In Google Maps</a>
+      <button class="btn btn-outline-dark" type="button">Leave a Message</button>
+    </div>
+  </div>
+</div>
+<br>
 <div class="container">
   <div class="row">
-    <div class="col-6">fjdksla</div>
-    <div class="col-6">
-      <div id="mapid" style="width: 400px; height: 700px"></div>
+    Contact Information
+      <!-- Grid row -->
+      <div class="row">
+        <ul>
+          <li><%-place.name%></li>
+          <li><a href="/schedule/<%-place._id%>">cataclism</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12"><div id="mapid" style="width: 100%; height: 400px" class="border rounded border-info"></div></div>
     </div>
   </div>
 </div>
   <script type="text/javascript">
+  
+  document.getElementById("openInGoogle").setAttribute("href","https://www.google.com/maps?q=".concat(<%-place.latlng.lat%>,",",<%-place.latlng.lng%>));
     // LEAFLET
     var mymap = L.map('mapid').setView([<%- place.latlng.lat %>, <%- place.latlng.lng %>], 14);
 
