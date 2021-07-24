@@ -42,27 +42,26 @@
       </table>
     </div>
     <div class="tab-pane fade" id="vaccinationsites" role="tabpanel" aria-labelledby="profile-tab">
-      <%- place.clinics %>
       <h1>Clinics</h1>
 
-      <div id="cattle" style="width:400px; height: 700px;"></div>
+      <div id="clinicsmap" style="width:100%; height: 700px;"></div>
 
       <script type="text/javascript">
-        var places = [<%- place.clinics %>]
+
         // LEAFLET
-        var mymap = L.map('cattle').setView([17.319093, -88.592259], 8);
+        var clinicmap = L.map('clinicsmap').setView([17.319093, -88.592259], 8);
 
         var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
 
-        OpenStreetMap_DE.addTo(mymap)
+        OpenStreetMap_DE.addTo(clinicmap)
 
         let marker;
-        <% for (var i = places.length - 1; i >= 0; i--) { %>
-          marker = L.marker([ <%-places[i].latlng.lat%>, <%-places[i].latlng.lng%>]).addTo(mymap)
-          marker.bindPopup("<h1><%-places[i].name%></h1><p><a href='/clinic/<%-places[i]._id%>'>Click here for more information</a></p>")
+        <% for (var i = place.clinics.length - 1; i >= 0; i--) { %>
+          marker = L.marker([ <%-place.clinics[i].latlng.lat%>, <%-place.clinics[i].latlng.lng%>]).addTo(clinicmap)
+          marker.bindPopup("<h1><%-place.clinics[i].name%></h1><p><a href='/clinic/<%-place.clinics[i]._id%>'>Click here for more information</a></p>")
         <% } %>
 
       </script>
@@ -131,6 +130,7 @@
             event.preventDefault()
 
             setTimeout(function () {
+                clinicmap.invalidateSize();
                 heatmap.invalidateSize();
             }, 500);
           })
