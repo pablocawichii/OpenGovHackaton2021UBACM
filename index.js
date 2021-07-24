@@ -73,7 +73,7 @@ const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
 				
 // 			}
 // 		})
-// 	}
+// 	}q
 // 	if(i == loc.length - 1) {
 // 		console.log("Done")
 // 	}
@@ -81,12 +81,8 @@ const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
 
 app.use("/static", express.static("node_modules/bootstrap/dist"));
 app.use("/static", express.static("node_modules/leaflet/dist"));
-app.use("/statictwo", express.static("node_modules/leaflet/dist"));
 app.use("/static", express.static("public"));
-app.use("/statictwo", express.static("node_modules/fontawesome-free/css/fontawesome.css"));
-app.use("/statictwo", express.static("node_modules/fontawesome-free/js/brands.js"));
-app.use("/statictwo", express.static("node_modules/fontawesome-free/js/solid.js"));
-app.use("/statictwo", express.static("node_modules/fontawesome-free/js/fontawesome.js"));
+// app.use("/static", express.static("node_modules/fontawesome-free"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -175,6 +171,10 @@ app.get("/schedule/:id", function (req, res) {
 	  		})
 	    }
     });
+});
+
+app.get("/district", function (req, res) {
+  res.render("district");
 });
 
 app.get("/:id", function (req, res) {
