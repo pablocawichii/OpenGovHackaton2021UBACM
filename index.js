@@ -54,6 +54,47 @@ const vaccineTimeSchema = new mongoose.Schema({
 
 const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
 
+// District SCHEMA
+const districtSchema = new mongoose.Schema({
+  refname: String,
+  displayname: String,
+  curfew: [{
+  	  day: String,
+	  openHour: String,
+	  closeHour: String
+  }],
+  clinics: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Place' }]
+
+});
+
+const District = mongoose.model("District", districtSchema);
+
+// District.create({
+// 	refname: "cayo",
+// 	displayname: "Cayo",
+// 	curfew: [
+// 	{
+// 		day: "Sunday - Wednesday",
+// 		openHour: "5",
+// 		closeHour: "10"
+// 	},
+// 	{
+// 		day: "Thursday - Saturday",
+// 		openHour: "5",
+// 		closeHour: "11"
+// 	}
+// 	],
+// 	clinics: []
+
+// }, (err, district) => {
+// 	Place.find({district: district.refname}, (err, places) => {
+// 		for (var i = places.length - 1; i >= 0; i--) {
+// 			district.clinics.push(places[i]._id)
+// 		}
+// 		district.save()
+// 	})
+// })
+
 
 
 
@@ -142,6 +183,17 @@ app.get("/clinic/:id", function (req, res) {
 
 app.get("/heatmap", function (req, res) {
   res.render("heatmap");
+});
+
+app.get("/district/:dist", function (req, res) {
+  District.findOne({refname: req.params.dist}).populate('clinics')
+  .exec((err, place) => {
+	    if (err) {
+		  console.log(err);
+		} else {
+		  res.render("district", { place: place });
+		}
+  });
 });
 
 app.get("/schedule/:id", function (req, res) {
