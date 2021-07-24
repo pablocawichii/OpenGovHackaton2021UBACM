@@ -1,23 +1,28 @@
 <%- include('./partials/head') %>
 <div class="container">
-  <div class="row">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Restrictions</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Vaccination Sites</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Hospitals</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Statistics</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Heat Map</a>
-      </li>
-    </ul>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#sirestrictions" type="button" role="tab" aria-controls="home" aria-selected="true">SI Restrictions</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#vaccinationsites" type="button" role="tab" aria-controls="profile" aria-selected="false">Vaccination Sites</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#hospitals" type="button" role="tab" aria-controls="contact" aria-selected="false">Hospitals</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#heatmap" type="button" role="tab" aria-controls="contact" aria-selected="false">Heat Map</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#covidstatistics" type="button" role="tab" aria-controls="contact" aria-selected="false">Covid Statistics</button>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="sirestrictions" role="tabpanel" aria-labelledby="home-tab">restrictions</div>
+    <div class="tab-pane fade" id="vaccinationsites" role="tabpanel" aria-labelledby="profile-tab">vaccination sites</div>
+    <div class="tab-pane fade" id="hospitals" role="tabpanel" aria-labelledby="profile-tab">hospitals</div>
+    <div class="tab-pane fade" id="heatmap" role="tabpanel" aria-labelledby="profile-tab">heat map</div>
+    <div class="tab-pane fade" id="covidstatistics" role="tabpanel" aria-labelledby="profile-tab">covid stats</div>
   </div>
 </div>
 <%- include('./partials/footer') %>
