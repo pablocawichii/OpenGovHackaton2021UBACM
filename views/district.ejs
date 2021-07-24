@@ -42,7 +42,9 @@
       </table>
     </div>
     <div class="tab-pane fade" id="vaccinationsites" role="tabpanel" aria-labelledby="profile-tab">
-      
+      <%- place.clinics %>
+      <h1>Clinics</h1>
+
     </div>
     <div class="tab-pane fade" id="hospitals" role="tabpanel" aria-labelledby="profile-tab">
       
@@ -95,7 +97,6 @@
           // which field name in your data represents the data value - default "value"
           valueField: 'count'
         };
-
 
         var heatmapLayer = new HeatmapOverlay(cfg);
         heatmapLayer.addTo(mymap)
