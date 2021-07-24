@@ -48,7 +48,60 @@
       
     </div>
     <div class="tab-pane fade" id="heatmap" role="tabpanel" aria-labelledby="profile-tab">
-      
+      <h1>HeatMap</h1>
+
+      <div id="mapid" style="width:100%; height: 500px;"></div>
+
+      <script type="text/javascript">
+        // LEAFLET
+        var mymap = L.map('mapid').setView([17.319093, -88.592259], 8);
+
+        var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        });
+
+        OpenStreetMap_DE.addTo(mymap)
+
+        // HEATMAP
+        var testData = {
+          max: 5000,
+          data: [
+          {lat: 17.496026, lng: -88.221972, count: 3594},
+          {lat: 17.228026, lng: -88.900229, count: 2719},
+          {lat: 18.292734, lng: -88.356200, count: 1626},
+          {lat: 17.744227, lng: -88.858985, count: 2711},
+          {lat: 16.968343, lng: -88.315755, count: 1581},
+          {lat: 16.293189, lng: -88.878374, count: 1016},
+          ]
+        };
+
+
+        var cfg = {
+          // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+          // if scaleRadius is false it will be the constant radius used in pixels
+          "radius": 0.15,
+          "maxOpacity": .8,
+          // scales the radius based on map zoom
+          "scaleRadius": true,
+          // if set to false the heatmap uses the global maximum for colorization
+          // if activated: uses the data maximum within the current map boundaries
+          //   (there will always be a red spot with useLocalExtremas true)
+          "useLocalExtrema": false,
+          // which field name in your data represents the latitude - default "lat"
+          latField: 'lat',
+          // which field name in your data represents the longitude - default "lng"
+          lngField: 'lng',
+          // which field name in your data represents the data value - default "value"
+          valueField: 'count'
+        };
+
+
+        var heatmapLayer = new HeatmapOverlay(cfg);
+        heatmapLayer.addTo(mymap)
+        heatmapLayer.setData(testData)
+
+      </script>
     </div>
     <div class="tab-pane fade" id="covidstatistics" role="tabpanel" aria-labelledby="profile-tab">
       
