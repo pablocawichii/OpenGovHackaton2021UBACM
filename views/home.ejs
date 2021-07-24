@@ -33,7 +33,7 @@
 			let marker;
 			<% for (var i = places.length - 1; i >= 0; i--) { %>
 				marker = L.marker([ <%-places[i].latlng.lat%>, <%-places[i].latlng.lng%>]).addTo(clinicmap)
-				marker.bindPopup("<h1><%-places[i].name%></h1><p><a href='/clinic/<%-places[i]._id%>'>Click here for more information</a></p>")
+				marker.bindPopup("<h1><%-places[i].name%></h1><p><a href='/clinic/<%-places[i]._id%>'><button class='btn btn-info'>Click here for more information</button></a></p>")
 			<% } %>
 
 		</script>
