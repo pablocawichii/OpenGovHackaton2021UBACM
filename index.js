@@ -81,7 +81,12 @@ const VaccineTime = mongoose.model("VaccineTime", vaccineTimeSchema);
 
 app.use("/static", express.static("node_modules/bootstrap/dist"));
 app.use("/static", express.static("node_modules/leaflet/dist"));
+app.use("/statictwo", express.static("node_modules/leaflet/dist"));
 app.use("/static", express.static("public"));
+app.use("/statictwo", express.static("node_modules/fontawesome-free/css/fontawesome.css"));
+app.use("/statictwo", express.static("node_modules/fontawesome-free/js/brands.js"));
+app.use("/statictwo", express.static("node_modules/fontawesome-free/js/solid.js"));
+app.use("/statictwo", express.static("node_modules/fontawesome-free/js/fontawesome.js"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");

@@ -4,20 +4,21 @@
     <div class="h-100 p-5 text-dark border bg-light rounded-3">
       <h2><%- place.name %></h2>
       <p></p>
-      <a id="openInGoogle" target="_blank" href="https://www.google.com/maps/place/17%C2%B014'21.6%22N+88%C2%B046'13.7%22W" class="btn btn-outline-dark">Find In Google Maps</a>
-      <button class="btn btn-outline-dark" type="button">Leave a Message</button>
+      <a id="openInGoogle" target="_blank" href="#" class="btn btn-outline-dark">Find In Google Maps</a>
+      <a class="btn btn-outline-dark"  href="/schedule/<%-place._id%>">Busy Hours</a>
     </div>
   </div>
 </div>
 <br>
 <div class="container">
-  <div class="row">
+  <div class="row"><i class="fa fa-car">jj</i>
     Contact Information
       <!-- Grid row -->
       <div class="row">
         <ul>
+          <% if (place.name) {%>
           <li><%-place.name%></li>
-          <li><a href="/schedule/<%-place._id%>">cataclism</a></li>
+          <% } %>
         </ul>
       </div>
     </div>
