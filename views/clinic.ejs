@@ -8,6 +8,30 @@
       <button class="btn btn-outline-dark" type="button">Leave a Message</button>
     </div>
   </div>
+  <div class="col-md-12">
+  	<table width="100%" style="text-align: center;">
+		<thead>
+			<tr>
+				<td>Times</td>
+				<td>Monday</td>
+				<td>Tuesday</td>
+				<td>Wednesday</td>
+				<td>Thursday</td>
+				<td>Friday</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% for (var i = 0; i <= times.length - 1; i++) { %>
+				<tr>
+					<td> <%- (i > 4) ? (i -4) : (i + 8) %> </td> 
+					<% for( var k = 0; k <= times[k].length; k ++) { %>
+						<td style="background: rgba(106,220,153, <%- (times[i][k]/40) %>);">  </td>
+					<% } %>
+				</tr>
+			<% } %>
+		</tbody>
+	</table>
+  </div>
 </div>
 <br>
 <div class="container">

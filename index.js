@@ -107,7 +107,34 @@ app.get("/clinic/:id", function (req, res) {
     } else {
       if (place.length) {
         res.redirect("/clinics")
-      } else {res.render("clinic", {place: place})}
+      } else {
+      		var days = 8; // Days you want to subtract
+			var date = new Date();
+			var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+		  	VaccineTime.find({ location: req.params.id, taken: { $gt:last } }, function (err, allTime) {
+			    if (err) {
+			      console.log(err);
+			    } else {
+			    	let split = [
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0],
+			    	[0,0,0,0,0]]
+			  		allTime.forEach((val, ind) => {
+			  			split[parseInt(val.taken.getHours() - 8)][parseInt(val.taken.getDay() - 1)]++;
+
+			  			if(ind === allTime.length - 1){
+      						res.render("clinic", {place: place, times: split})
+			  			}
+			  		})
+			    }
+		    });
+      }
     }
   });
 });
