@@ -129,7 +129,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
-  res.render("home");
+  Place.find({}, function (err, allPlaces) {
+    if (err) {
+      console.log(err);
+    } else {
+  	  res.render("home", { places: allPlaces });
+    }
+  });
 });
 
 app.get("/clinics", function (req, res) {
