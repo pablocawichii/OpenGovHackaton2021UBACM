@@ -196,6 +196,17 @@ app.get("/district/:dist", function (req, res) {
   });
 });
 
+app.get("/district/:dist", function (req, res) {
+  District.findOne({refname: req.params.dist}).populate('clinics')
+  .exec((err, place) => {
+	    if (err) {
+		  console.log(err);
+		} else {
+		  res.render("district", { place: place });
+		}
+  });
+});
+
 app.get("/schedule/:id", function (req, res) {
 	var days = 8; // Days you want to subtract
 	var date = new Date();

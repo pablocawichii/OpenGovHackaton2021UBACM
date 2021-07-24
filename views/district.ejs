@@ -1,46 +1,58 @@
 <%- include('./partials/head') %>
-<div class="container">
-  <div class="row">
-    <div class="col-6"><div class="btn-group">
-      <a href="/" class="btn btn-secondary">Nation Wide</a>
-    </div></div>
-    <div class="col-6">
-      <div class="btn-group">
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-            Region
-          </button>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-            <li><a class="dropdown-item" href="/distric/belize">Cayo</a></li>
-            <li><a class="dropdown-item" href="/distric/belize">Belize</a></li>
-            <li><a class="dropdown-item" href="/distric/belize">Corozal</a></li>
-            <li><a class="dropdown-item" href="/distric/belize">Toledo</a></li>
-            <li><a class="dropdown-item" href="/distric/belize">Stann Creek</a></li>
-            <li><a class="dropdown-item" href="/distric/belize">Orange Walk</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<%- place %>
 <br>
-  <div class="row">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Restrictions</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Vaccination Sites</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Hospitals</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Statistics</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Heat Map</a>
-      </li>
-    </ul>
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#sirestrictions" type="button" role="tab" aria-controls="home" aria-selected="true">Curfew</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#vaccinationsites" type="button" role="tab" aria-controls="profile" aria-selected="false">Vaccination Sites</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#hospitals" type="button" role="tab" aria-controls="contact" aria-selected="false">Hospitals</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#heatmap" type="button" role="tab" aria-controls="contact" aria-selected="false">Heat Map</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#covidstatistics" type="button" role="tab" aria-controls="contact" aria-selected="false">Covid Statistics</button>
+    </li>
+  </ul>
+  <br>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="sirestrictions" role="tabpanel" aria-labelledby="home-tab">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Day of Week</th>
+            <th scope="col">Curfew Ends</th>
+            <th scope="col">Curfew Starts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i = 0; i <= place.curfew.length - 1; i++) { %>
+          <tr>
+            <th scope="row"><%- place.curfew[i].day %></th>
+            <td><%- place.curfew[i].openHour %>pm</td>
+            <td><%- place.curfew[i].closeHour %>am</td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    <div class="tab-pane fade" id="vaccinationsites" role="tabpanel" aria-labelledby="profile-tab">
+      
+    </div>
+    <div class="tab-pane fade" id="hospitals" role="tabpanel" aria-labelledby="profile-tab">
+      
+    </div>
+    <div class="tab-pane fade" id="heatmap" role="tabpanel" aria-labelledby="profile-tab">
+      
+    </div>
+    <div class="tab-pane fade" id="covidstatistics" role="tabpanel" aria-labelledby="profile-tab">
+      
+    </div>
   </div>
 </div>
 <%- include('./partials/footer') %>
