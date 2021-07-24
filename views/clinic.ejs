@@ -1,63 +1,70 @@
 <%- include('./partials/head') %>
+<br>
 <div class="container">
   <div class="col-md-12">
     <div class="h-100 p-5 text-dark border bg-light rounded-3">
       <h2><%- place.name %></h2>
       <p></p>
       <a id="openInGoogle" target="_blank" href="#" class="btn btn-outline-dark">Find In Google Maps</a>
-      <a class="btn btn-outline-dark"  href="/schedule/<%-place._id%>">Busy Hours</a>
     </div>
   </div>
-  <div class="col-md-12">
-  	<table width="100%" style="text-align: center;">
-		<thead>
-			<tr>
-				<td>Times</td>
-				<td>Monday</td>
-				<td>Tuesday</td>
-				<td>Wednesday</td>
-				<td>Thursday</td>
-				<td>Friday</td>
-			</tr>
-		</thead>
-		<tbody>
-			<% for (var i = 0; i <= times.length - 1; i++) { %>
-				<tr>
-					<td> <%- (i > 4) ? (i -4) : (i + 8) %> </td> 
-					<% for( var k = 0; k <= times[k].length; k ++) { %>
-						<td style="background: rgba(106,220,153, <%- (times[i][k]/40) %>);">  </td>
-					<% } %>
-				</tr>
-			<% } %>
-		</tbody>
-	</table>
-  </div>
-</div>
-<br>
-<div class="container">
-  <div class="row"><i class="fa fa-car">jj</i>
-    Contact Information
+  <br>
+  <div class="row">
+      <h1 class="text-center">Contact Information</h1>
       <!-- Grid row -->
       <div class="row">
-        <ul>
-          <% if (place.name) {%>
-          <li><%-place.name%></li>
-          <% } %>
-        </ul>
         <ul class="list-group">
           <% if (place.name) {%>
-          <li class="list-group-item">An item</li>
+          <li class="list-group-item">Name: <%- place.name %></li>
           <% } %>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
+          <% if (place.contactNum) {%>
+          <li class="list-group-item">phone: <%- place.contactNum %></li>
+          <% } %>
+          <% if (place.address) {%>
+          <li class="list-group-item">Name: <%- place.address %></li>
+          <% } %>
+          <% if (place.website) {%>
+          <li class="list-group-item">Name: <%- place.website %></li>
+          <% } %>
         </ul>
       </div>
     </div>
+    <br><br>
+    <h1 class="text-center">Geographic Location</h1>
+    <br>
     <div class="row">
       <div class="col-12"><div id="mapid" style="width: 100%; height: 400px" class="border rounded border-info"></div></div>
     </div>
+    </div>
+    <br><br>
+    <h1 class="text-center">Busy Hours</h1>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <table width="100%" style="text-align: center;">
+        <thead>
+          <tr>
+            <td>Times</td>
+            <td>Monday</td>
+            <td>Tuesday</td>
+            <td>Wednesday</td>
+            <td>Thursday</td>
+            <td>Friday</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var i = 0; i <= times.length - 1; i++) { %>
+            <tr>
+              <td> <%- (i > 4) ? (i -4) : (i + 8) %> </td> 
+              <% for( var k = 0; k <= times[k].length; k ++) { %>
+                <td style="background: rgba(106,220,153, <%- (times[i][k]/40) %>);">  </td>
+              <% } %>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      </div></div>
+    <br>
   </div>
 </div>
   <script type="text/javascript">

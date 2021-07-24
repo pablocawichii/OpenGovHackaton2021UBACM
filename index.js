@@ -95,9 +95,6 @@ const District = mongoose.model("District", districtSchema);
 // 	})
 // })
 
-
-
-
 //Start of july 23rd 1627048800000
 //End of july 23rd 1627081200000
 // loc.forEach((val, i) => {
