@@ -56,14 +56,14 @@
 
       <script type="text/javascript">
         // LEAFLET
-        var mymap = L.map('mapid').setView([17.319093, -88.592259], 8);
+        var heatmap = L.map('mapid').setView([17.319093, -88.592259], 8);
 
         var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
         maxZoom: 18,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         });
 
-        OpenStreetMap_DE.addTo(mymap)
+        OpenStreetMap_DE.addTo(heatmap)
 
         // HEATMAP
         var testData = {
@@ -99,9 +99,20 @@
         };
 
         var heatmapLayer = new HeatmapOverlay(cfg);
-        heatmapLayer.addTo(mymap)
+        heatmapLayer.addTo(heatmap)
         heatmapLayer.setData(testData)
 
+
+        var triggerTabList = [].slice.call(document.querySelectorAll('#myTab button'))
+        triggerTabList.forEach(function (triggerEl) {
+          triggerEl.addEventListener('click', function (event) {
+            event.preventDefault()
+
+            setTimeout(function () {
+                heatmap.invalidateSize();
+            }, 500);
+          })
+        })
       </script>
     </div>
     <div class="tab-pane fade" id="covidstatistics" role="tabpanel" aria-labelledby="profile-tab">
