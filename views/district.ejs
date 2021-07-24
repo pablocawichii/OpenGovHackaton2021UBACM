@@ -1,35 +1,46 @@
 <%- include('./partials/head') %>
 <div class="container">
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-    <li><a class="dropdown-item active" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul>
+  <div class="row">
+    <div class="col-6"><div class="btn-group">
+      <a href="/" class="btn btn-secondary">Nation Wide</a>
+    </div></div>
+    <div class="col-6">
+      <div class="btn-group">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Region
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" href="/distric/belize">Cayo</a></li>
+            <li><a class="dropdown-item" href="/distric/belize">Belize</a></li>
+            <li><a class="dropdown-item" href="/distric/belize">Corozal</a></li>
+            <li><a class="dropdown-item" href="/distric/belize">Toledo</a></li>
+            <li><a class="dropdown-item" href="/distric/belize">Stann Creek</a></li>
+            <li><a class="dropdown-item" href="/distric/belize">Orange Walk</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Restrictions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Vaccination Sites</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Hospitals</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Heat Map</a>
+      </li>
+    </ul>
+  </div>
 </div>
-</div>
-
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Restrictions</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Vaccination Sites</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Hospitals</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Statistics</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Heat Map</a>
-  </li>
-</ul>
-
 <%- include('./partials/footer') %>
