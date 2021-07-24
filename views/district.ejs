@@ -67,8 +67,8 @@
           <% for (var i = 0; i <= place.curfew.length - 1; i++) { %>
           <tr>
             <th scope="row"><%- place.curfew[i].day %></th>
-            <td><%- place.curfew[i].openHour %>pm</td>
-            <td><%- place.curfew[i].closeHour %>am</td>
+            <td><%- place.curfew[i].openHour %>am</td>
+            <td><%- place.curfew[i].closeHour %>pm</td>
           </tr>
           <% } %>
         </tbody>
@@ -171,7 +171,14 @@
       </script>
     </div>
     <div class="tab-pane fade" id="covidstatistics" role="tabpanel" aria-labelledby="profile-tab">
-      
+      <div class="row">
+        <h1>Closeup of Total Cases</h1>
+        <div class="col-6"><img class="img-fluid" src="https://media.discordapp.net/attachments/867774193155964938/868429381553504307/unknown.png" alt=""></div>
+        <h1>Total Cases History</h1>
+        <div class="col-6"><img class="img-fluid" src="https://media.discordapp.net/attachments/867774193155964938/868428878518034442/unknown.png" alt=""></div>
+        <h1>Total Cases</h1>
+        <div class="col-6"><img class="img-fluid" src="https://media.discordapp.net/attachments/867774193155964938/868426470656184330/unknown.png" alt=""></div>
+      </div>
     </div>
   </div>
 </div>
