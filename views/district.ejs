@@ -1,5 +1,38 @@
 <%- include('./partials/head') %>
-<%- place %>
+
+<script type="text/javascript">
+  let latmap, lngmap, zoommap;
+  if ( '<%- place.refname %>' == 'belize' ) {
+      latmap = 17.496026;
+      lngmap = -88.221972;
+      zoommap = 10;
+  } else if ( '<%- place.refname %>' == 'cayo' ) {
+      latmap = 17.228026;
+      lngmap = -88.900229;
+      zoommap = 11;
+  } else if ( '<%- place.refname %>' == 'corozal' ) {
+      latmap = 18.292734;
+      lngmap = -88.356200;
+      zoommap = 11;
+  } else if ( '<%- place.refname %>' == 'orangewalk' ) {
+      latmap = 17.744227;
+      lngmap = -88.858985;
+      zoommap = 10;
+  } else if ( '<%- place.refname %>' == 'stanncreek' ) {
+      latmap = 16.968343;
+      lngmap = -88.315755;
+      zoommap = 10;
+  } else if ( '<%- place.refname %>' == 'toledo' ) {
+      latmap = 16.293189;
+      lngmap = -88.878374;
+      zoommap = 11;
+  } 
+    latlngmap = {
+      lat: latmap,
+      lng: lngmap
+    }
+</script>
+
 <br>
 <div class="container">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -49,7 +82,7 @@
       <script type="text/javascript">
 
         // LEAFLET
-        var clinicmap = L.map('clinicsmap').setView([17.319093, -88.592259], 8);
+        var clinicmap = L.map('clinicsmap').setView(latlngmap, zoommap);
 
         var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
         maxZoom: 18,
@@ -77,7 +110,7 @@
 
       <script type="text/javascript">
         // LEAFLET
-        var heatmap = L.map('mapid').setView([17.319093, -88.592259], 8);
+        var heatmap = L.map('mapid').setView(latlngmap, zoommap);
 
         var OpenStreetMap_DE = L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
         maxZoom: 18,
